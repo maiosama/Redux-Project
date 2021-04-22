@@ -216,7 +216,7 @@
             function List(props){
                 return (
                     <ul>
-                        {props.item.map((item)=>(
+                        {props.items.map((item)=>(
                             <li key= {ite.id}>
                                 <span>
                                     {item.name}
@@ -243,7 +243,7 @@
                     }))
                 }
                 removeItem = (todo)=>{
-                    this.pros.store.dispatch(removeTodoAction(todo.id))
+                    this.props.store.dispatch(removeTodoAction(todo.id))
                 }
                 render(){
                     return(
