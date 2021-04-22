@@ -216,7 +216,16 @@
             function List(props){
                 return (
                     <ul>
-                        <li>List</li>
+                        {props.item.map((item)=>(
+                            <li key= {ite.id}>
+                                <span>
+                                    {item.name}
+                                </span>
+                                <button onClick={()=> props.remove(item)}>
+                                    X
+                                </button>
+                            </li>        
+                        ))}
                     </ul>    
                 )
             }
@@ -233,6 +242,9 @@
                         id: generateId()
                     }))
                 }
+                removeItem = (todo)=>{
+                    this.pros.store.dispatch(removeTodoAction(todo.id))
+                }
                 render(){
                     return(
                         <div>
@@ -242,7 +254,10 @@
                             placeholer='Add Todo'
                             ref={(input) => this.input = input}/>
                             <button onClick ={this.addItem}> Todo </button>
-                            <List/>
+                            <List
+                            items = {this.props.todos}
+                            remove = {this.removeItem}
+                            />
                         </div>    
                     )
                 }
@@ -259,6 +274,9 @@
                         id:generateId()
                     }))
                 }
+                removeItem = (goal)=>{
+                    this.props.store.dispatch(removeGoalAction(goal.id))
+                }
                 render(){
                     return(
                         <div>
@@ -269,7 +287,10 @@
                             ref={(input) => this.input = input}/>
                             <button onClick ={this.addItem}> Goal </button>
 
-                            <List/>
+                            <List
+                            items={this.rops.goal}
+                            remove = {this.removeItem}
+                            />
                         </div>    
                     )
                 }
