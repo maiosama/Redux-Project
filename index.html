@@ -194,6 +194,12 @@
                 }
                 toggleItem = (id)=>{
                     this.props.store.dispatch(toggleTodoAction(id))
+                    return API.saveTodoToggle(todo.id)
+                    .catch(()=>{
+                        this.props.store.dispatch(toggleTodoAction(id))
+                        alert ('Ann error occurred. Try again')
+                    })
+
                 }
 
                 render(){
